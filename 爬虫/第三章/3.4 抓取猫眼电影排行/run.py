@@ -7,7 +7,10 @@ import time
 
 def get_one_page(url):
     try:
-        response = requests.get(url)
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
+        }
+        response = requests.get(url, headers=headers)
         if response.status_code == 200:
             return response.text
         return None
