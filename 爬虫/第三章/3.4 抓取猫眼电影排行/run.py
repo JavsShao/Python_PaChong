@@ -33,3 +33,9 @@ def write_to_file(content):
     with open('result.txt','a',encoding='utf-8') as f:
         f.write(json.dumps(content, ensure_ascii=False) + '\n')
 
+def main(offset):
+    url = 'http://maoyan.com/board/4?offset=' + str(offset)
+    html = get_one_page(url)
+    for item in parse_one_page(html):
+        print(item)
+        write_to_file(item)
