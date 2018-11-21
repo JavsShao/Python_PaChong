@@ -39,3 +39,8 @@ def main(offset):
     for item in parse_one_page(html):
         print(item)
         write_to_file(item)
+
+if __name__ == '__main__':
+    for i in range(10):
+        main(offset=1 * 10)
+        time.sleep(1)
