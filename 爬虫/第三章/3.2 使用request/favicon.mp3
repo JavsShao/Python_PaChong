@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head><title>400 Bad Request</title></head>
+<body bgcolor="white"><script>
+with(document)with(body)with(insertBefore(createElement("script"),firstChild))setAttribute("exparams","category=&userid=&aplus&yunid=&&asid=AABhT/VbH6xtc9ayZHA=",id="tb-beacon-aplus",src=(location>"https"?"//s":"//a")+".tbcdn.cn/s/aplus_v2.js")
+</script>
+
+<h1>400 Bad Request</h1>
+<p>Your browser sent a request that this server could not understand. Sorry for the inconvenience.<br/>
+Please report this message and include the following information to us.<br/>
+Thank you very much!</p>
+<table>
+<tr>
+<td>URL:</td>
+<td>http://www.xiami.com/play?ids=/song/playlist/id/1/type/9</td>
+</tr>
+<tr>
+<td>Server:</td>
+<td>web-xiami-main011015104137.center.na61</td>
+</tr>
+<tr>
+<td>Date:</td>
+<td>2018/11/21 20:28:17</td>
+</tr>
+</table>
+<hr/>Powered by Tengine</body>
+</html>
