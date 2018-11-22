@@ -12,6 +12,6 @@ text = '''
      </ul>
  </div> 
 '''
-html = etree.HTML(text)
-result = etree.tostring(html)
+html = etree.HTML(text) # etree模块可以修正HTML标签
+result = etree.tostring(html)   # 使用etree.tostring模块可以输出
 print(result.decode('utf-8'))
