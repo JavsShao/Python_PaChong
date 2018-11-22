@@ -11,3 +11,6 @@ print(result)
 
 result = html.xpath('//a[@href="link2.html"]/../@class')
 print(result)
+
+result = html.xpath('//a[@href="link4.html"]/parent::*/@class')
+print(result)
