@@ -20,3 +20,7 @@ print(data[0])
 # 输出第一个字典的姓名
 print(data[0]['name'])
 print(data[0].get('name'))
+
+# 没有age属性，所以会报错，解决方式是：使用get来获取属性值
+# print(data[0]['age'])
+print(data[0].get('age'))   # 使用get方法获取属性值，如果没有该属性，那么不会报错，会返回None
