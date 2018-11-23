@@ -2,12 +2,16 @@
   {
     "name": "Bob",
     "gender": "male",
-    "birthday": "1992-10-18"
-  }
-][
+    "birthday": "1997-02-02"
+  },
   {
-    "name": "Bob",
-    "gender": "male",
-    "birthday": "1992-10-18"
+    "name": "Selina",
+    "gender": "female",
+    "birthday": "1995-10-18"
+  },
+  {
+    "name": "王伟",
+    "gender": "男",
+    "birthday": "1997-02-02"
   }
 ]

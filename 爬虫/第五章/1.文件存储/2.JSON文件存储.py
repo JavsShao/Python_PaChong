@@ -10,6 +10,10 @@ str = '''
     "name":"Selina",
     "gender":"female",
     "birthday":"1995-10-18"
+},{
+    "name":"王伟",
+    "gender":"男",
+    "birthday":"1997-02-02"
 }]
 '''
 data = json.loads(str)
@@ -27,14 +31,10 @@ print(data[0].get('age'))   # 使用get方法获取属性值，如果没有该�
 
 
 print('------输出JSON-----')
-data = [{
-    'name':'Bob',
-    'gender':'male',
-    'birthday':'1992-10-18'
-}]
-with open('data.json','a') as file:
-    file.write(json.dumps(data, indent=2))
-
-
-# with open('data1.json','w') as file:
-#     file.write(json.dumps(data),indent=2)
+# data = [{
+#     'name':'Bob',
+#     'gender':'male',
+#     'birthday':'1992-10-18'
+# }]
+with open('data.json','w') as file:
+    file.write(json.dumps(data, indent=2, ensure_ascii=False))
