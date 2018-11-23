@@ -14,3 +14,9 @@ str = '''
 '''
 data = json.loads(str)
 print(data)
+
+# 输出第一个字典
+print(data[0])
+# 输出第一个字典的姓名
+print(data[0]['name'])
+print(data[0].get('name'))
