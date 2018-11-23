@@ -16,11 +16,24 @@ html = '''
 '''
 
 doc = PyQuery(html)
+# li = doc('.item-0.active')
+# print(li)
+
+# li.remove_class('active')
+# print(li)
+#
+# li.add_class('qq')
+# print(li)
+
 li = doc('.item-0.active')
+li.attr('name','link')
 print(li)
 
-li.remove_class('active')
+li.text('我是Hamdi')
 print(li)
 
-li.add_class('qq')
+print(li.html())
+print(li.text())
+
+li.html('<span>我是HAMDI')
 print(li)
