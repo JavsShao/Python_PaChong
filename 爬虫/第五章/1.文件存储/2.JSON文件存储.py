@@ -33,4 +33,8 @@ data = [{
     'birthday':'1992-10-18'
 }]
 with open('data.json','a') as file:
-    file.write(json.dumps(data))
+    file.write(json.dumps(data, indent=2))
+
+
+# with open('data1.json','w') as file:
+#     file.write(json.dumps(data),indent=2)
