@@ -9,3 +9,11 @@ with open('data.csv', 'w') as csvfile:
     writer.writerow(['10003','Jordan',21])
 
 print('------')
+print('------')
+print('------')
+print('------')
+print('------')
+print('------')
+print('------')
+print('------')
+print('------')
