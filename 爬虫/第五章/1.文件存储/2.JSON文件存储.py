@@ -38,8 +38,8 @@ print('------输出JSON-----')
 # }]
 with open('data.json','w') as file:
     file.write(json.dumps(data, indent=2, ensure_ascii=False))
-    file.write(json.dumps(data, indent=2, ensure_ascii=False))
-    file.write(json.dumps(data, indent=2, ensure_ascii=False))
-    file.write(json.dumps(data, indent=2, ensure_ascii=False))
-    file.write(json.dumps(data, indent=2, ensure_ascii=False))
+    # file.write(json.dumps(data, indent=2, ensure_ascii=False))
+    # file.write(json.dumps(data, indent=2, ensure_ascii=False))
+    # file.write(json.dumps(data, indent=2, ensure_ascii=False))
+    # file.write(json.dumps(data, indent=2, ensure_ascii=False))
 
