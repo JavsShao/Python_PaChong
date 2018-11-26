@@ -14,7 +14,8 @@ try:
     # 计算数据
     print('Count:',cursor.rowcount)
     one = cursor.fetchone()
-    # print('One:',one)
-    # result = cursor.fetchall()
+    # 查询第一条数据
+    print('One:',one)
+    result = cursor.fetchall()
 except:
     print("出现错误！")
