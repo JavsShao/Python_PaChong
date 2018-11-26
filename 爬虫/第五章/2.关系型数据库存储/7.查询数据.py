@@ -13,11 +13,16 @@ try:
     cursor.execute(sql)
     # 计算数据
     print('Count:',cursor.rowcount)
-    one = cursor.fetchone()
+    # one = cursor.fetchone()
     # 查询第一条数据
-    print('One:',one)
+    # print('One:',one)
     # 查询除第一条以外的所有数据
-    result = cursor.fetchall()
-    print('Result:',result)
+    print('Count:',cursor.rowcount)
+    row = cursor.fetchone()
+    while row:
+        print('Row:', row)
+        row = cursor.fetchone()
+    # result = cursor.fetchall()
+    # print('Result:',result)
 except:
     print("出现错误！")
