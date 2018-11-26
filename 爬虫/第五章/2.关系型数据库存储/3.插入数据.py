@@ -1,9 +1,9 @@
 import pymysql
 
 
-id = '20180001'
-user = 'Bob'
-age = 20
+id = '20180003'
+user = 'zw'
+age = 24
 
 db = pymysql.connect(host='127.0.0.1',port=3306,user='root',password='970202',db='pachong_test')
 cursor = db.cursor()

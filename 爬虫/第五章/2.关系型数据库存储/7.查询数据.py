@@ -16,6 +16,8 @@ try:
     one = cursor.fetchone()
     # 查询第一条数据
     print('One:',one)
+    # 查询除第一条以外的所有数据
     result = cursor.fetchall()
+    print('Result:',result)
 except:
     print("出现错误！")
