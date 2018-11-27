@@ -28,6 +28,6 @@ collection = db.students
 # 更新
 condition = {'name':'Hamdi'}
 student = collection.find_one(condition)
-student['age'] = 25
+student['name'] = 'zhaowei'
 result = collection.update(condition, student)
 print(result)
