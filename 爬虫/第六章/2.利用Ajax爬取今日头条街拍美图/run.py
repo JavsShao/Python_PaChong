@@ -1,5 +1,5 @@
 
-from=search_tab&pd=synthesis
+
 
 
 # 获取页面信息
