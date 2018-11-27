@@ -26,8 +26,12 @@ collection = db.students
 # print([result['name'] for result in results])
 
 # 更新
-condition = {'name':'Hamdi'}
-student = collection.find_one(condition)
-student['name'] = 'zhaowei'
-result = collection.update(condition, student)
+# condition = {'name':'Hamdi'}
+# student = collection.find_one(condition)
+# student['name'] = 'zhaowei'
+# result = collection.update(condition, student)
+# print(result)
+
+# 删除
+result = collection.remove({'name':'Hamdi'})
 print(result)
