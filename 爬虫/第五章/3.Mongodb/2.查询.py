@@ -12,7 +12,11 @@ collection = db.students
 # print(type(result))
 # print(result)
 
-result = collection.find({'age':25})
-print(result)
-for resul in result:
-    print(resul)
+# result = collection.find({'age':25})
+# print(result)
+# for resul in result:
+#     print(resul)
+
+# 计数
+count = collection.find().count()
+print(count)
