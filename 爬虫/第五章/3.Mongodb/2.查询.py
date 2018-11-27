@@ -22,5 +22,12 @@ collection = db.students
 # print(count)
 
 # 排序
-results = collection.find().sort('name',pymongo.ASCENDING)
-print([result['name'] for result in results])
+# results = collection.find().sort('name',pymongo.ASCENDING)
+# print([result['name'] for result in results])
+
+# 更新
+condition = {'name':'Hamdi'}
+student = collection.find_one(condition)
+student['age'] = 25
+result = collection.update(condition, student)
+print(result)
