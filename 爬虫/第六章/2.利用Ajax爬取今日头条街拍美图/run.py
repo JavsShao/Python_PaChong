@@ -17,7 +17,6 @@ def get_page(offset):
         'count':'20',
         'cur_tab':'1',
         'from':'search_tab',
-        'pd':'synthesis'
     }
     base_url = 'https://www.toutiao.com/search_content/?'
     url = base_url + urlencode(params)
@@ -32,6 +31,8 @@ def get_page(offset):
 def get_images(json):
     if json.get('data'):
         for item in json.get('data'):
+            if item.get('cell_type') is not None:
+                continue
             title = item.get('title')
             images = item.get('image_list')
             for image in images:
@@ -44,11 +45,15 @@ def get_images(json):
 def save_image(item):
     img_path = 'img' + os.path.sep + item.get('title')
     if not os.path.exists(img_path):
-        os.mkdir(item.get('title'))
+        # os.mkdir(item.get('title'))
+        os.makedirs(img_path)
     try:
         response = requests.get(item.get('image'))
         if response.status_code == 200:
-            file_path = '{0}/{1}.{2}'.format(item.get('title'), md5(response.content).hexdigest(), 'jpg')
+            # file_path = '{0}/{1}.{2}'.format(item.get('title'), md5(response.content).hexdigest(), 'jpg')
+            file_path = img_path + os.path.sep + '{file_name}.{file_suffix}'.format(
+                file_name=md5(response.content).hexdigest(),
+                file_suffix='jpg')
             if not os.path.exists(file_path):
                 with open(file_path, "wb") as f:
                     f.write(response.content)
@@ -66,8 +71,8 @@ def main(offset):
         save_image(item)
 
 # 起始页数 和 终止页数
-GROUP_START = 1
-GROUP_END = 10
+GROUP_START = 0
+GROUP_END = 5
 
 # 程序入口
 if __name__ == '__main__':
