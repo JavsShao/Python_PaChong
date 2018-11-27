@@ -19,7 +19,8 @@ def get_page(offset):
         'from':'search_tab',
         'pd':'synthesis'
     }
-    url = 'https://www.toutiao.com/search_content/?' + urlencode(params)
+    base_url = 'https://www.toutiao.com/search_content/?'
+    url = base_url + urlencode(params)
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -35,13 +36,14 @@ def get_images(json):
             images = item.get('image_list')
             for image in images:
                 yield {
-                    'image':'http:' + image.get('url'),
+                    'image':'https:' + image.get('url'),
                     'title':title
                 }
 
 # 保存图片
 def save_image(item):
-    if not os.path.exists(item.get('title')):
+    img_path = 'img' + os.path.sep + item.get('title')
+    if not os.path.exists(img_path):
         os.mkdir(item.get('title'))
     try:
         response = requests.get(item.get('image'))
@@ -50,8 +52,9 @@ def save_image(item):
             if not os.path.exists(file_path):
                 with open(file_path, "wb") as f:
                     f.write(response.content)
+                    print("成功下载图片！")
             else:
-                print("下载完成！",file_path)
+                print("已经下载了！",file_path)
     except requests.ConnectionError:
         print('图片下载失败！')
 
@@ -64,7 +67,7 @@ def main(offset):
 
 # 起始页数 和 终止页数
 GROUP_START = 1
-GROUP_END = 20
+GROUP_END = 10
 
 # 程序入口
 if __name__ == '__main__':
