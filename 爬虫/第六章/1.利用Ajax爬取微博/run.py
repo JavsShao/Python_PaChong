@@ -48,6 +48,12 @@ def parse_page(json, page: int):
                 weibo['转发量'] = item.get('reposts_count')
                 yield weibo
 
+# 保存结果到mongodb数据库中
+def save_to_mongo(result):
+    if collection.insert(result):
+        print('保存到mongodb数据库中.....')
+
+
 
 if __name__ == '__main__':
     for page in range(1, max_page + 1):
@@ -55,3 +61,4 @@ if __name__ == '__main__':
         results = parse_page(*json)
         for result in results:
             print(result)
+            save_to_mongo(result)
