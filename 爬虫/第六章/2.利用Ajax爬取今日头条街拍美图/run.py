@@ -61,3 +61,8 @@ def main(offset):
     for item in get_images(json):
         print(item)
         save_image(item)
+
+# 起始页数 和 终止页数
+GROUP_START = 1
+GROUP_END = 20
+
