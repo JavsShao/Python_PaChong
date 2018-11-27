@@ -66,3 +66,10 @@ def main(offset):
 GROUP_START = 1
 GROUP_END = 20
 
+# 程序入口
+if __name__ == '__main__':
+    pool = Pool()
+    groups = ([x * 20 for x in range(GROUP_START, GROUP_END + 1)])
+    pool.map(main, groups)
+    pool.close()
+    pool.join()
