@@ -3,6 +3,7 @@ import os
 
 from urllib.parse import urlencode
 from hashlib import md5
+from multiprocessing.pool import Pool
 
 
 # 获取页面信息
@@ -53,3 +54,10 @@ def save_image(item):
                 print("下载完成！",file_path)
     except requests.ConnectionError:
         print('图片下载失败！')
+
+# 控制页数
+def main(offset):
+    json = get_page(offset)
+    for item in get_images(json):
+        print(item)
+        save_image(item)
