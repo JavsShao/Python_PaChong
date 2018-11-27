@@ -23,3 +23,15 @@ def get_page(offset):
             return response.json()
     except requests.ConnectionError:
         return None
+
+# 解析页面
+def get_images(json):
+    if json.get('data'):
+        for item in json.get('data'):
+            title = item.get('title')
+            images = item.get('image_list')
+            for image in images:
+                yield {
+                    'image':'http:' + image.get('url'),
+                    'title':title
+                }
