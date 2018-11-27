@@ -18,5 +18,9 @@ collection = db.students
 #     print(resul)
 
 # 计数
-count = collection.find().count()
-print(count)
+# count = collection.find().count()
+# print(count)
+
+# 排序
+results = collection.find().sort('name',pymongo.ASCENDING)
+print([result['name'] for result in results])
