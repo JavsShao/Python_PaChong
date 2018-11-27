@@ -34,3 +34,18 @@ def get_page(page):
             return response.json()
     except requests.ConnectionError as e:
         print('错误！',e.args)
+
+# 解析Json结果
+def parse_page(json):
+    if json:
+        # cards在data参数下面
+        items = json.get('data').get('cards')
+        for item in items:
+            item = item.get('mblog')
+            weibo = {}
+            weibo['id'] = item.get('id')
+            weibo['text'] = item.get('text')
+            weibo['attitudes'] = item.get('attitudes')
+            weibo['comments'] = item.get('comment_count')
+            weibo['reposts'] = item.get('reposts_count')
+            yield weibo
