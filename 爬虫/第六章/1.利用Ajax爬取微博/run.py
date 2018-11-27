@@ -1,4 +1,8 @@
 # 微博开头网址
+from urllib.parse import urlencode
+
+import requests
+
 base_url = 'https://m.weibo.cn/api/container/getIndex?'
 
 # 请求头信息
@@ -12,3 +16,21 @@ headers = {
     # Ajax请求
     'X-Requested-With': 'XMLHttpRequest',
 }
+
+# 获取请求的json结果
+def get_page(page):
+    # 请求的参数
+    params = {
+        'type':'uid',
+        'value':'3024395081',
+        'containerid':'1005053024395081',
+        'page':page
+    }
+    # 访问的地址
+    url = base_url + urlencode(params)
+    try:
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            return response.json()
+    except requests.ConnectionError as e:
+        print('错误！',e.args)
