@@ -8,6 +8,11 @@ db = client.students_1
 # 指定集合(表)
 collection = db.students
 
-result = collection.find_one({'name':'Hamdi'})
-print(type(result))
+# result = collection.find_one({'name':'Hamdi'})
+# print(type(result))
+# print(result)
+
+result = collection.find({'age':25})
 print(result)
+for resul in result:
+    print(resul)
