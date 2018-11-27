@@ -20,4 +20,5 @@ try:
     # 输入源码
     # print(brower.page_source)
 finally:
+    # 关闭浏览器
     brower.close()
