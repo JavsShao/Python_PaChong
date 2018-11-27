@@ -14,8 +14,9 @@ try:
     wait = WebDriverWait(brower, 10)
     wait.until(EC.presence_of_element_located((By.ID, 'content_left')))
     # 浏览器当前访问的网址(url)
-    print(brower.current_url)
-    # print(brower.get_cookies())
+    # print(brower.current_url)
+    # 获取当前访问的cookies
+    print(brower.get_cookies())
     # print(brower.page_source)
 finally:
     # brower.close()
