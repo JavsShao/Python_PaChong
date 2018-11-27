@@ -1,5 +1,6 @@
+import requests
 
-
+from urllib.parse import urlencode
 
 
 # 获取页面信息
@@ -15,3 +16,10 @@ def get_page(offset):
         'from':'search_tab',
         'pd':'synthesis'
     }
+    url = 'https://www.toutiao.com/search_content/?' + urlencode(params)
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            return response.json()
+    except requests.ConnectionError:
+        return None
