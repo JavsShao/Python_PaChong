@@ -1,3 +1,5 @@
+import pymongo
+
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
@@ -12,6 +14,11 @@ browser = webdriver.Chrome()
 wait = WebDriverWait(browser, 10)
 # 要搜索的商品
 KEYWORD = 'iPad'
+MONGO_URL = 'localhost'
+MONGO_DB = 'taobao'
+MONGO_COLLECTION = 'products'
+client = pymongo.MongoClient(MONGO_URL)
+db = client[MONGO_DB]
 
 def index_page(page):
     '''
@@ -62,4 +69,8 @@ def get_products():
         save_to_mongo(product)
 
 def save_to_mongo(product):
-    pass
+    '''
+    保存至Mongodb
+    :param product:
+    :return:
+    '''
