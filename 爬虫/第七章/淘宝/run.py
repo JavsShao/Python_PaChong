@@ -80,3 +80,11 @@ def save_to_mongo(result):
             print('存储到MongoDB成功！')
     except Exception as e:
         print('存储到MongoDB失败！失败原因是：',e)
+
+def main():
+    '''
+    遍历每一页商品
+    :return:
+    '''
+    for i in range(1, MAX_PAGE + 1):
+        index_page(i)
