@@ -68,9 +68,14 @@ def get_products():
         print(product)
         save_to_mongo(product)
 
-def save_to_mongo(product):
+def save_to_mongo(result):
     '''
     保存至Mongodb
-    :param product:
+    :param result: 爬取的结果
     :return:
     '''
+    try:
+        if db[MONGO_COLLECTION].insert(result):
+            print('存储到MongoDB成功！')
+    except Exception as e:
+        print('存储到MongoDB失败！失败原因是：',e)
