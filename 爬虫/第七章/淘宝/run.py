@@ -19,6 +19,7 @@ MONGO_DB = 'taobao'
 MONGO_COLLECTION = 'products'
 client = pymongo.MongoClient(MONGO_URL)
 db = client[MONGO_DB]
+MAX_PAGE = 100
 
 def index_page(page):
     '''
