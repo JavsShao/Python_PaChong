@@ -14,4 +14,6 @@ browser.get('https://www.taobao.com')
 time.sleep(3)
 # 切换选项卡
 browser.switch_to_window(browser.window_handles[0])
-browser.get('https://python.org')
+browser.get('https://www.tencent.com')
+time.sleep(5)
+browser.close()
