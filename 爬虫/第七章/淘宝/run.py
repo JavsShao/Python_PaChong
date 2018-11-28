@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from urllib.parse import quote
+from pyquery import PyQuery
 
 
 # 声明浏览器对象
@@ -38,3 +39,9 @@ def index_page(page):
         index_page(page)
 
 def get_products():
+    '''
+    提取商品数据
+    :return:
+    '''
+    # 获取网页源码
+    html = browser.page_source
