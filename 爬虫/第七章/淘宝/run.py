@@ -38,6 +38,7 @@ def index_page(page):
     except TimeoutException:
         index_page(page)
 
+
 def get_products():
     '''
     提取商品数据
@@ -45,3 +46,20 @@ def get_products():
     '''
     # 获取网页源码
     html = browser.page_source
+    doc = PyQuery(html)
+    items = doc('#mainsrp-itemlist .items .item').items()
+    for item in items:
+        product = {
+            'image':item.find('.pic .img').attr('data-src'),
+            'price':item.find('.price').text(),
+            'deal':item.find('.deal-cnt').text(),
+            # 这是标题，我自己修改的，不一定正确，权且试试看
+            'title':item.find('.alt').text(),
+            'shop':item.find('.shop').text(),
+            'location':item.find('.location').text()
+        }
+        print(product)
+        save_to_mongo(product)
+
+def save_to_mongo(product):
+    pass
