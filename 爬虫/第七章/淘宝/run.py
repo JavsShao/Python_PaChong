@@ -29,7 +29,7 @@ def index_page(page):
     '''
     print('正在爬取第', page, '页')
     try:
-        url = 'https://s.taobao.com/search?q' + quote(KEYWORD)
+        url = 'https://s.taobao.com/search?q=' + quote(KEYWORD)
         browser.get(url)
         if page > 1:
             input = wait.until(
