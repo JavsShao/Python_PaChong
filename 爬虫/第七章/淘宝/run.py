@@ -95,7 +95,7 @@ def main():
 def get_url():
     #网址可以更改为用微博登录的网址'https://weibo.com/login.php?spm=a2107.1.0.0.337911d9Xjeo8U&entry=taobao&goto=https%3A%2F%2Flogin.taobao.com%2Faso%2Ftvs%3Fdomain%3Dweibo%26sid%3De14b81726a49329b0db026af4eff8357%26target%3D68747470733A2F2F7777772E7461'
     url = 'https://login.taobao.com/member/login.jhtml?spm=a21bo.2017.754894437.1.5af911d9l2Cj72&f=top&redirectURL=https%3A%2F%2Fwww.taobao.com%2F'
-    #您已经将网址更改微博登录网址可以省略这步直接用输入用户名密码阶段。
+    #将网址更改微博登录网址可以省略这步直接用输入用户名密码阶段。
     browser.get(url)
     button_login = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,'#J_QRCodeLogin > div.login-links > a.forget-pwd.J_Quick2Static')))
     button_login.click()
