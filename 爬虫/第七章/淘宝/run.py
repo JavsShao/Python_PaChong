@@ -106,9 +106,9 @@ def get_url():
 
     EMAIL = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,'#pl_login_logged > div > div:nth-child(2) > div > input')))
 
-    EMAIL.send_keys('你自己的微博用户名')
+    EMAIL.send_keys('微博用户名')
     PASSWD = wait.until((EC.presence_of_element_located((By.CSS_SELECTOR,'#pl_login_logged > div > div:nth-child(3) > div > input'))))
-    PASSWD.send_keys('你自己的微博密码')
+    PASSWD.send_keys('微博密码')
     time.sleep(3)
     button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#pl_login_logged > div > div:nth-child(7) > div:nth-child(1) > a > span')))
     button.click()
