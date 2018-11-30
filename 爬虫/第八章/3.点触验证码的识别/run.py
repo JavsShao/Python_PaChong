@@ -121,4 +121,12 @@ class CrackTouClick(object):
             ActionChains(self.browser).move_to_element_with_offset(self.get_touclick_element(), location[0],location[1].click().perform)
             time.sleep(1)
 
+    def touch_click_verify(self):
+        """
+        点击验证按钮
+        :return: None
+        """
+        button = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'touclick-pub-submit')))
+        button.click()
+
 
