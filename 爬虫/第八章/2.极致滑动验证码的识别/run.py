@@ -1,5 +1,7 @@
 import time
+from io import BytesIO
 
+from PIL import Image
 from selenium import webdriver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -48,6 +50,15 @@ class CrackGeetest():
         size = img.size
         top, bottom, left, right = location['y'], location['y'], + size['height'], location['width']
         return (top, bottom, left, right)
+
+    def get_screenhot(self):
+        '''
+        获取网页截图
+        :return: 截图对象
+        '''
+        screenshot = self.browser.get_screenshot_as_png()
+        screenshot = Image.open(BytesIO(screenshot))
+        return screenshot
 
 if __name__ == '__main__':
     crack = CrackGeetest()
