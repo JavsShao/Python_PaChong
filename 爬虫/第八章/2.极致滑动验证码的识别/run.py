@@ -94,7 +94,7 @@ class CrackGeetest():
         email.send_keys(self.email)
         password.send_keys(self.password)
 
-    def get_rap(self, image_1, image_2):
+    def get_gap(self, image_1, image_2):
         '''
         获取缺口偏移量
         :param image_1: 不带缺口图片
@@ -164,7 +164,7 @@ class CrackGeetest():
             track.append(round(move))
         return track
 
-    def move_to_page(self, slider, track):
+    def move_to_gap(self, slider, track):
         '''
         拖动滑块到缺口处
         :param slider: 滑块
