@@ -139,5 +139,35 @@ class CrackTouClick(object):
         time.sleep(10)
         print('登录成功！')
 
+    def crack(self):
+        """
+        破解入口
+        :return: None
+        """
+        self.open()
+        # 点击验证按钮
+        button = self.get_touclick_button()
+        button.click()
+        # 获取验证码图片
+        image = self.get_touclick_image()
+        bytes_array = BytesIO()
+        image.save(bytes_array, format='PNG')
+        # 识别验证码
+        result = self.chaojiying.post_pic(bytes_array.getvalue(), CHAOJIYING_KIND)
+        print(result)
+        locations = self.get_points(result)
+        self.touch_click_words(locations)
+        self.touch_click_verify()
+        # 判定是否成功
+        success = self.wait.until(
+            EC.text_to_be_present_in_element((By.CLASS_NAME, 'touclick-hod-note'), '验证成功'))
+        print(success)
+
+        # 失败后重试
+        if not success:
+            self.crack()
+        else:
+            self.login()
+
 
 
