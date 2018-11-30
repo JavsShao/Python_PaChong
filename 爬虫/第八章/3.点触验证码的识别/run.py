@@ -43,3 +43,11 @@ class CrackTouClick(object):
         password = self.wait.until(EC.presence_of_element_located((By.ID, 'password')))
         email.send_keys(self.email)
         email.send_keys(self.password)
+
+    def get_touclick_button(self):
+        '''
+        获取初始验证按钮
+        :return:
+        '''
+        button = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'touclick-hod-wrap')))
+        return button
