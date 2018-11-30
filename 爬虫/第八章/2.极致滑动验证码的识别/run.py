@@ -60,5 +60,16 @@ class CrackGeetest():
         screenshot = Image.open(BytesIO(screenshot))
         return screenshot
 
+    def open(self):
+        '''
+        打开网页：输入用户名和密码
+        :return:
+        '''
+        self.browser.get(self.url)
+        email = self.wait.until(EC.presence_of_element_located((By.ID, 'email')))
+        password = self.wait.until(EC.presence_of_element_located((By.ID, 'password')))
+        email.send_keys(self.email)
+        password.send_keys(self.password)
+
 if __name__ == '__main__':
     crack = CrackGeetest()
