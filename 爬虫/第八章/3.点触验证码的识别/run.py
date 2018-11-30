@@ -129,4 +129,15 @@ class CrackTouClick(object):
         button = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'touclick-pub-submit')))
         button.click()
 
+    def login(self):
+        '''
+        登录
+        :return:None
+        '''
+        submit = self.wait.until(EC.element_to_be_clickable((By.ID, '_submit')))
+        submit.click()
+        time.sleep(10)
+        print('登录成功！')
+
+
 
