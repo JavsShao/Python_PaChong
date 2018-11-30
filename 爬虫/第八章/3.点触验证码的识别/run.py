@@ -169,5 +169,6 @@ class CrackTouClick(object):
         else:
             self.login()
 
-
-
+if __name__ == '__main__':
+    crack = CrackTouClick()
+    crack.crack()
