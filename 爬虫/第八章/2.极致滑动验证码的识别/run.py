@@ -61,6 +61,13 @@ class CrackGeetest():
         screenshot = Image.open(BytesIO(screenshot))
         return screenshot
 
+    def get_slider(self):
+        '''
+        获取滑块
+        :return: 滑块对象
+        '''
+        slider = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'geetest_slider_button')))
+
     def get_geetest_image(self, name='captcha.png'):
         '''
         获取验证码图片
@@ -177,6 +184,18 @@ class CrackGeetest():
         submit.click()
         time.sleep(10)
         print('登录成功！')
+
+    def crack(self):
+        # 输入用户名密码
+        self.open()
+        # 点击验证码按钮
+        button = self.get_geetest_button()
+        button.click()
+
+        # 获取验证码图片
+        image_1 = self.get_geetest_image('captcha_1.png')
+        # 点击按钮,出现带缺口的验证码图片
+        slider = self.get_slider()
 
 
 
