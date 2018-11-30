@@ -1,3 +1,5 @@
+import time
+
 from selenium import webdriver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -35,6 +37,17 @@ class CrackGeetest():
         button = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'geetest_radar_tip')))
         return button
 
+    def get_possition(self):
+        '''
+        获取验证码的位置
+        :return:
+        '''
+        img = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'geetest_canvas_img')))
+        time.sleep(2)
+        location = img.location
+        size = img.size
+        top, bottom, left, right = location['y'], location['y'], + size['height'], location['width']
+        return (top, bottom, left, right)
+
 if __name__ == '__main__':
     crack = CrackGeetest()
-    crack.get_geetest_button()
