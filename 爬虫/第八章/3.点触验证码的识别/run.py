@@ -19,3 +19,10 @@ class CrackTouClick(object):
         self.email = Email
         self.password = PASSWORD
         self.chaojiying = Chaojiying(CHAOJIYING_USERNAME, CHAOJIYING_PASSWORD,CHAOJIYING_SOFT_ID)
+
+    def __del__(self):
+        '''
+        关闭浏览器
+        :return:
+        '''
+        self.browser.close()
