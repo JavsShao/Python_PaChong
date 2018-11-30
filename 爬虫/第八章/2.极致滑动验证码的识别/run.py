@@ -168,6 +168,16 @@ class CrackGeetest():
         time.sleep(0.5)
         ActionChains(self.browser).release().perform()
 
+    def login(self):
+        '''
+        登录
+        :return:
+        '''
+        submit = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'login-btn')))
+        submit.click()
+        time.sleep(10)
+        print('登录成功！')
+
 
 
 if __name__ == '__main__':
