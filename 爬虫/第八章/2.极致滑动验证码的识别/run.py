@@ -24,3 +24,6 @@ class CrackGeetest():
         :return:
         '''
         self.browser.close()
+
+if __name__ == '__main__':
+    crack = CrackGeetest()
