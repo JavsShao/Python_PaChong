@@ -4,6 +4,7 @@ from io import BytesIO
 from PIL import Image
 from selenium import webdriver
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -153,6 +154,20 @@ class CrackGeetest():
             # 加入轨迹
             track.append(round(move))
         return track
+
+    def move_to_page(self, slider, track):
+        '''
+        拖动滑块到缺口处
+        :param slider: 滑块
+        :param track: 轨迹
+        :return:
+        '''
+        ActionChains(self.browser).click_and_hold(slider).perform()
+        for x in track:
+            ActionChains(self.browser).move_by_offset(xoffset=x, yoffset=0).perform()
+        time.sleep(0.5)
+        ActionChains(self.browser).release().perform()
+
 
 
 if __name__ == '__main__':
