@@ -220,3 +220,4 @@ class CrackGeetest():
 
 if __name__ == '__main__':
     crack = CrackGeetest()
+    crack.crack()
