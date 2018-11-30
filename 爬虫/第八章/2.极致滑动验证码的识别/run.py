@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 # 配置
@@ -24,6 +26,14 @@ class CrackGeetest():
         :return:
         '''
         self.browser.close()
+
+    def get_geetest_button(self):
+        '''
+        获取初始验证按钮
+        :return:验证对象
+        '''
+        button = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'geetest_rander_tip')))
+        return button
 
 if __name__ == '__main__':
     crack = CrackGeetest()
