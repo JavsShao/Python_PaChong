@@ -3,6 +3,7 @@ from io import BytesIO
 
 from PIL import Image
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from .captach import Chaojiying
@@ -108,4 +109,16 @@ class CrackTouClick(object):
         groups = captcha_result.get('pic_str').split('|')
         locations = [[int(number) for number in group.split(',')] for group in groups]
         return locations
+
+    def touch_click_words(self, locations):
+        '''
+        点击验证图片
+        :param locations: 点击位置
+        :return:
+        '''
+        for location in locations:
+            print(location)
+            ActionChains(self.browser).move_to_element_with_offset(self.get_touclick_element(), location[0],location[1].click().perform)
+            time.sleep(1)
+
 
