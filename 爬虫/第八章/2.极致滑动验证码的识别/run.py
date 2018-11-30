@@ -13,6 +13,8 @@ from selenium.webdriver.support import expected_conditions as EC
 # 配置
 EMAIL = 'javs_shao@163.com'
 PASSWORD = 'QWERTY1234'
+BORDER = 6
+INIT_LEFT = 60
 
 class CrackGeetest():
     def __init__(self):
@@ -196,6 +198,23 @@ class CrackGeetest():
         image_1 = self.get_geetest_image('captcha_1.png')
         # 点击按钮,出现带缺口的验证码图片
         slider = self.get_slider()
+        slider.click()
+        # 获取带缺口的验证码图片
+        image_2 = self.get_geetest_image('captcha_2.png')
+        # 获取缺口位置
+        gap = self.get_gap(image_1, image_2)
+        print('缺口位置：', gap)
+        # 减去缺口位移
+        gap -= BORDER
+        # 获取移动轨迹
+        track = self.get_track(gap)
+        print('滑动轨迹', track)
+        # 拖动滑块
+        self.move_to_gap(slider, track)
+
+        success = self.wait.until(
+            EC.text_to_be_present_in_element((By.CLASS_NAME, 'geetest_success_radar_tip_content'), '验证成功'))
+        print(success)
 
 
 
