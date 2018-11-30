@@ -12,7 +12,11 @@ CHAOJIYING_KIND = 2002
 
 
 class CrackTouClick(object):
+
     def __init__(self):
+        '''
+        初始化
+        '''
         self.url = 'http:admin.touclick.com/login.html'
         self.browser = webdriver.Chrome()
         self.wait = WebDriverWait(self.browser, 20)
