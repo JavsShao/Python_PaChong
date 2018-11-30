@@ -1,0 +1,4 @@
+USERNAME = 'Hamdi__'
+PASSWORD = 'QWERTY0202'
+
+TEMPLATES_FOLDER = 'templates'
