@@ -1,3 +1,6 @@
+from io import BytesIO
+
+from PIL import Image
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -59,3 +62,12 @@ class CrackTouClick(object):
         '''
         element = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'touclick-pub-content')))
         return element
+
+    def get_screenshot(self):
+        '''
+        获取网页截图
+        :return:
+        '''
+        screenshot = self.browser.get_screenshot_as_png()
+        screenshot = Image.open(BytesIO(screenshot))
+        return screenshot
