@@ -32,8 +32,9 @@ class CrackGeetest():
         获取初始验证按钮
         :return:验证对象
         '''
-        button = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'geetest_rander_tip')))
+        button = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'geetest_radar_tip')))
         return button
 
 if __name__ == '__main__':
     crack = CrackGeetest()
+    crack.get_geetest_button()
