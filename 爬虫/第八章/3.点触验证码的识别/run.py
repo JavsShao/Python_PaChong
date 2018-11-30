@@ -98,3 +98,14 @@ class CrackTouClick(object):
         top, bottom, left, right = location['y'], location['y'] + size['height'], location['x'], location['x'] + size[
             'width']
         return {top, bottom, left, right}
+
+    def get_points(self, captcha_result):
+        '''
+        解析识别结果
+        :param captcha_result: 识别结果
+        :return: 转化后的结果
+        '''
+        groups = captcha_result.get('pic_str').split('|')
+        locations = [[int(number) for number in group.split(',')] for group in groups]
+        return locations
+
