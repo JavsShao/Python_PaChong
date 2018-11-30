@@ -7,10 +7,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-EMAIL = 'javs_shao@163.com'
+EMAIL = 'cqc@cuiqingcai.com'
 PASSWORD = ''
-# PASSWORD = 'QWERTY1234'
-BORDER = 20
+BORDER = 6
 INIT_LEFT = 60
 
 
@@ -22,8 +21,8 @@ class CrackGeetest():
         self.email = EMAIL
         self.password = PASSWORD
 
-    def __del__(self):
-        self.browser.close()
+    # def __del__(self):
+    #     self.browser.close()
 
     def get_geetest_button(self):
         """
