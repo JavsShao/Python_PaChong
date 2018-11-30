@@ -60,6 +60,19 @@ class CrackGeetest():
         screenshot = Image.open(BytesIO(screenshot))
         return screenshot
 
+    def get_geetest_image(self, name='captcha.png'):
+        '''
+        获取验证码图片
+        :param name:
+        :return: 图片对象
+        '''
+        top, bottom, left, right = self.get_possition()
+        print('验证码位置，',top, bottom,left, right)
+        screenshot = self.get_screenhot()
+        captcha = screenshot.crop((left, top, right, bottom))
+        captcha.save()
+        return captcha
+
     def open(self):
         '''
         打开网页：输入用户名和密码
