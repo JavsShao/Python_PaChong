@@ -84,5 +84,24 @@ class CrackGeetest():
         email.send_keys(self.email)
         password.send_keys(self.password)
 
+    def get_rap(self, image_1, image_2):
+        '''
+        获取缺口偏移量
+        :param image_1: 不带缺口图片
+        :param image_2: 带缺口图片
+        :return:
+        '''
+        left = 60
+        for i in range(left, image_1.size[0]):
+            for j in range(image_2.size[0]):
+                if not self.is_pixel_equal(image_1, image_2, i, j):
+                    left = i
+                    return left
+            return left
+
+    def is_pixel_equal(self, image_1, image_2, x, y):
+        pass
+
+
 if __name__ == '__main__':
     crack = CrackGeetest()
