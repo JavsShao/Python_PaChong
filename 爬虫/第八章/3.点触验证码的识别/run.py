@@ -51,3 +51,11 @@ class CrackTouClick(object):
         '''
         button = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'touclick-hod-wrap')))
         return button
+
+    def get_touclick_element(self):
+        '''
+        获取验证码图片对象
+        :return: 图片对象
+        '''
+        element = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'touclick-pub-content')))
+        return element
