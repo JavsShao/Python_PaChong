@@ -1,3 +1,4 @@
+import time
 from io import BytesIO
 
 from PIL import Image
@@ -86,4 +87,14 @@ class CrackTouClick(object):
         return captcha
 
     def get_position(self):
-        pass
+        '''
+        获取验证码位置
+        :return: 验证码位置元组
+        '''
+        element = self.get_touclick_element()
+        time.sleep(2)
+        location = element.location
+        size = element.size
+        top, bottom, left, right = location['y'], location['y'] + size['height'], location['x'], location['x'] + size[
+            'width']
+        return {top, bottom, left, right}
