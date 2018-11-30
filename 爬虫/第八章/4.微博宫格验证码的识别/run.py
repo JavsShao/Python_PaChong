@@ -13,3 +13,10 @@ class CrackWeiboSlide():
         self.wait = WebDriverWait(self.browser, 20)
         self.username = USERNAME
         self.password = PASSWORD
+
+    def __del__(self):
+        '''
+        关闭浏览器
+        :return:
+        '''
+        self.browser.close()
