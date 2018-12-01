@@ -7,13 +7,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-EMAIL = 'cqc@cuiqingcai.com'
-PASSWORD = ''
+EMAIL = 'javs_shao@163.com'
+PASSWORD = 'QWERTY1234'
 BORDER = 6
 INIT_LEFT = 60
 
 
 class CrackGeetest():
+
     def __init__(self):
         self.url = 'https://account.geetest.com/login'
         self.browser = webdriver.Chrome()
@@ -21,8 +22,8 @@ class CrackGeetest():
         self.email = EMAIL
         self.password = PASSWORD
 
-    # def __del__(self):
-    #     self.browser.close()
+    def __del__(self):
+        self.browser.close()
 
     def get_geetest_button(self):
         """
@@ -130,9 +131,9 @@ class CrackGeetest():
         # 当前位移
         current = 0
         # 减速阈值
-        mid = distance * 4 / 5
+        mid = distance * 2 / 5
         # 计算间隔
-        t = 0.2
+        t = 0.5
         # 初速度
         v = 0
 
@@ -184,13 +185,15 @@ class CrackGeetest():
         # 点击验证按钮
         button = self.get_geetest_button()
         button.click()
-        # 获取验证码图片
-        image1 = self.get_geetest_image('captcha1.png')
         # 点按呼出缺口
         slider = self.get_slider()
         slider.click()
         # 获取带缺口的验证码图片
         image2 = self.get_geetest_image('captcha2.png')
+        # 2、执行js改变css样式，显示背景图
+        self.browser.execute_script('document.querySelectorAll("canvas")[2].style=""')
+        image1 = self.get_geetest_image('captcha1.png')
+        time.sleep(1)
         # 获取缺口位置
         gap = self.get_gap(image1, image2)
         print('缺口位置', gap)
@@ -216,3 +219,4 @@ class CrackGeetest():
 if __name__ == '__main__':
     crack = CrackGeetest()
     crack.crack()
+
