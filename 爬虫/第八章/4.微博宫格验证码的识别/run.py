@@ -1,5 +1,7 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 USERNAME = 'Hamdi__'
 PASSWORD = 'QWERTY0202'
@@ -23,3 +25,16 @@ class CrackWeiboSlide():
         :return:
         '''
         self.browser.close()
+
+    def open(self):
+        '''
+        打开网页输入用户名密码并点击
+        :return:
+        '''
+        self.browser.get(self.url)
+        username = self.wait.until(EC.presence_of_element_located((By.ID, 'loginName')))
+        password = self.wait.until(((EC.presence_of_element_located((By.ID, 'loginPassword')))))
+        submit = self.wait.until(EC.element_to_be_clickable((By.ID, 'loginAction')))
+        username.send_keys(self.username)
+        password.send_keys(self.password)
+        submit.click()
