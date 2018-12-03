@@ -30,3 +30,12 @@ class Scheluler(object):
             print('开始抓取代理')
             getter.run()
             time.sleep(cycle)
+
+    def schedule_api(self):
+        """
+        开启API
+        """
+        app.run(API_HOST, API_PORT)
+
+    def run(self):
+        print('代理池开始运行')
