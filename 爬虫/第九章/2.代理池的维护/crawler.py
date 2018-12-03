@@ -59,3 +59,20 @@ class Crawler(object, metaclass=ProxyMetaclass):
             for address, port in re_ip_address:
                 result = address + ':' + port
                 yield result.replace(' ', '')
+
+    def crawl_kuaidaili(self):
+        '''
+        获取快代理
+        :return:
+        '''
+        for i in range(1, 4):
+            start_url = 'http://www.kuaidaili.com/free/inha/{}/'.format(i)
+            html = get_page(start_url)
+            if html:
+                ip_address = re.compile('<td data-title="IP">(.*?)</td>')
+                re_ip_address = ip_address.findall(html)
+                port = re.compile('<td data-title="PORT">(.*?)</td>')
+                re_port = port.findall(html)
+                for address, port in zip(re_ip_address, re_port):
+                    address_port = address + ':' + port
+                    yield address_port.replace(' ', '')
