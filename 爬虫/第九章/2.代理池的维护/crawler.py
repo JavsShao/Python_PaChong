@@ -103,3 +103,26 @@ class Crawler(object, metaclass=ProxyMetaclass):
                     for address, port in zip(re_ip_address, re_port):
                         address_port = address + ':' + port
                         yield address_port.replace(' ', '')
+
+    def crawl_data5u(self):
+        start_url = 'http://www.data5u.com/free/gngn/index.shtml'
+        headers = {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
+            'Cache-Control': 'max-age=0',
+            'Connection': 'keep-alive',
+            'Cookie': 'JSESSIONID=47AA0C887112A2D83EE040405F837A86',
+            'Host': 'www.data5u.com',
+            'Referer': 'http://www.data5u.com/free/index.shtml',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36',
+        }
+        html = get_page(start_url, options=headers)
+        if html:
+            ip_address = re.compile('<span><li>(\d+\.\d+\.\d+\.\d+)</li>.*?<li class=\"port.*?>(\d+)</li>',
+                                    re.S)
+            re_ip_address = ip_address.findall(html)
+            for address, port in re_ip_address:
+                result = address + ':' + port
+                yield result.replace(' ', '')
