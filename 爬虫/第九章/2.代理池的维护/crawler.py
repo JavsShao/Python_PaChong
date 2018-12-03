@@ -126,3 +126,19 @@ class Crawler(object, metaclass=ProxyMetaclass):
             for address, port in re_ip_address:
                 result = address + ':' + port
                 yield result.replace(' ', '')
+
+
+    def crawl_iphai(self):
+        start_url = 'http://www.iphai.com/'
+        html = get_page(start_url)
+        if html:
+            find_tr = re.compile('<tr>(.*?)</tr>', re.S)
+            trs = find_tr.findall(html)
+            for s in range(1, len(trs)):
+                find_ip = re.compile('<td>\s+(\d+\.\d+\.\d+\.\d+)\s+</td>', re.S)
+                re_ip_address = find_ip.findall(trs[s])
+                find_port = re.compile('<td>\s+(\d+)\s+</td>', re.S)
+                re_port = find_port.findall(trs[s])
+                for address, port in zip(re_ip_address, re_port):
+                    address_port = address + ':' + port
+                    yield address_port.replace(' ', '')
