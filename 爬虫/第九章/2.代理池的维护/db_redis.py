@@ -11,3 +11,13 @@ class RedisClient(object):
         :param password: Redis密码
         '''
         self.db = redis.StrictRedis(host=host, port=port, password=password, decode_responses=True)
+
+    def add(self, proxy, score=INITIAL_SCORE):
+        '''
+        添加代理，设置分数为最高
+        :param proxy:代理
+        :param scores: 分数
+        :return: 添加结果
+        '''
+        if not self.db.zscore(REDIS_KEY, proxy):
+            return self.db.zadd(REDIS_KEY, score,proxy)
