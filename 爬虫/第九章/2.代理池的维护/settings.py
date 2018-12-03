@@ -13,3 +13,9 @@ MAX_SCORE = 100
 MIN_SCORE = 0
 # 默认的分数
 INITIAL_SCORE = 10
+
+# 测试网址
+TEST_URL = 'https://www.baidu.com'
+VALID_STATUS_CODES = [200, 302]
+# 最大批测试量
+BATCH_TEST_SIZE = 10
