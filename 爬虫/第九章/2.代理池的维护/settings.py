@@ -16,6 +16,6 @@ INITIAL_SCORE = 10
 
 # 测试网址
 TEST_URL = 'https://www.baidu.com'
-VALID_STATUS_CODES = [200, 302]
+VALID_STATUS_CODES = [200]
 # 最大批测试量
 BATCH_TEST_SIZE = 10
