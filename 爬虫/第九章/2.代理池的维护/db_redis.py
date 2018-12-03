@@ -1,8 +1,8 @@
 import redis
 from random import choice
 
-from settings import *
-from error import *
+from error import PoolEmptyError
+from settings import REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, REDIS_KEY, MAX_SCORE, MIN_SCORE, INITIAL_SCORE
 
 
 class RedisClient(object):
