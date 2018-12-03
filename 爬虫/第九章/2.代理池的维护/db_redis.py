@@ -2,6 +2,7 @@ import redis
 from random import choice
 
 from .settings import *
+from .error import *
 
 
 class RedisClient(object):
@@ -38,3 +39,4 @@ class RedisClient(object):
                 return choice(result)
             else:
                 raise PoolEmptyError
+
