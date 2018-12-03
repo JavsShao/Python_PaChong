@@ -19,3 +19,13 @@ TEST_URL = 'https://www.baidu.com'
 VALID_STATUS_CODES = [200]
 # 最大批测试量
 BATCH_TEST_SIZE = 10
+
+# 检查周期
+TESTER_CYCLE = 20
+# 获取周期
+GETTER_CYCLE = 200
+
+# 开关
+TESTER_ENABLED = True
+GETTER_ENABLED = True
+API_ENABLED = True
