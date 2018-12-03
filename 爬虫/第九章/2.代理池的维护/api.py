@@ -23,3 +23,12 @@ def index():
     :return:
     '''
     return '<h2>欢迎进入代理池系统</h2>'
+
+@app.route('/count')
+def get_counts():
+    '''
+    获取代理池总数
+    :return: 代理池总数
+    '''
+    conn = get_conn()
+    return str(conn.count())
