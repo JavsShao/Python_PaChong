@@ -15,3 +15,11 @@ def get_conn():
     if not hasattr(g, 'redis'):
         g.redis = RedisClient()
     return g.redis
+
+@app.route('/')
+def index():
+    '''
+    主页
+    :return:
+    '''
+    return '<h2>欢迎进入代理池系统</h2>'
