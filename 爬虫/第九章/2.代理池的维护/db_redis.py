@@ -40,3 +40,16 @@ class RedisClient(object):
             else:
                 raise PoolEmptyError
 
+    def decrease(self, proxy):
+        '''
+        代理值减1分，分数小于最小值，则代理删除
+        :param proxy: 代理
+        :return: 修改后的分数
+        '''
+        score = self.db.zscore(REDIS_KEY, proxy)
+        if score and score > MIN_SCORE:
+            print('代理：', proxy, '当前分数：', score, '减1')
+            return self.db.zincrby(REDIS_KEY, proxy, -1)
+        else:
+            print('代理：',proxy, '当前分数', score, '移除')
+            return self.db.zrem(REDIS_KEY, proxy)
