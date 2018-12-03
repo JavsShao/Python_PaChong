@@ -33,5 +33,10 @@ def get_counts():
     conn = get_conn()
     return str(conn.count())
 
+@app.route('/random')
+def get_proxy():
+    conn = get_conn()
+    return conn.random()
+
 if __name__ == '__main__':
     app.run()
