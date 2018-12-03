@@ -1,4 +1,6 @@
 import redis
+from random import choice
+
 from .settings import *
 
 
@@ -21,3 +23,18 @@ class RedisClient(object):
         '''
         if not self.db.zscore(REDIS_KEY, proxy):
             return self.db.zadd(REDIS_KEY, score,proxy)
+
+    def random(self):
+        '''
+        随机获取有效代理，首先尝试获取最高分数代理，如果最高分数不存在，则按照排名获取，否则异常
+        :return: 随机代理
+        '''
+        result = self.db.zrangebyscore(REDIS_KEY, MAX_SCORE, MAX_SCORE)
+        if len(result):
+            return choice(result)
+        else:
+            result = self.db.zrevrange(REDIS_KEY, 0, 100)
+            if len(result):
+                return choice(result)
+            else:
+                raise PoolEmptyError
