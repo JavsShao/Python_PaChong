@@ -3,7 +3,7 @@ import re
 
 from pyquery import PyQuery
 
-from .utils import get_page
+from utils import get_page
 
 
 class ProxyMetaclass(type):

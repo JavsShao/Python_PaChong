@@ -1,8 +1,8 @@
 import redis
 from random import choice
 
-from .settings import *
-from .error import *
+from settings import *
+from error import *
 
 
 class RedisClient(object):

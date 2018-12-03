@@ -1,6 +1,6 @@
 from flask import Flask, g
 
-from .db_redis import RedisClient
+from db_redis import RedisClient
 
 
 __all__ = ['app']
