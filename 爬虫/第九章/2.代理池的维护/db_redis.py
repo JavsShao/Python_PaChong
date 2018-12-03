@@ -61,3 +61,13 @@ class RedisClient(object):
         :return: 是否存在
         '''
         return not self.db.zscore(REDIS_KEY, proxy) == None
+
+    def max(self, proxy):
+        '''
+        将代理设置为MAX_SCORE
+        :param proxy:
+        :return:
+        '''
+        print('代理：', proxy, '可用,设置为：', MAX_SCORE)
+        return self.db.zadd(REDIS_KEY, MAX_SCORE, proxy)
+
