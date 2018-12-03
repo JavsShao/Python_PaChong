@@ -39,3 +39,22 @@ class Scheluler(object):
 
     def run(self):
         print('代理池开始运行')
+
+    def run(self):
+        '''
+        代理池开始运行
+        :return:
+        '''
+        print('代理池开始运行')
+
+        if TESTER_ENABLED:
+            tester_process = Process(target=self.schedule_tester)
+            tester_process.start()
+
+        if GETTER_ENABLED:
+            getter_process = Process(target=self.schedule_getter)
+            getter_process.start()
+
+        if API_ENABLED:
+            api_process = Process(target=self.schedule_api)
+            api_process.start()
