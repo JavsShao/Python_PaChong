@@ -20,3 +20,13 @@ class RedisQueue():
         if isinstance(request, WeixinRequest):
             return self.db.rpush(REDIS_KEY, dumps(request))
         return False
+
+    def pop(self):
+        '''
+        取出下一个Request并反序列化
+        :return:
+        '''
+        if self.db.llen(REDIS_KEY):
+            return loads(self.db.lpop((REDIS_KEY)))
+        else:
+            return False
