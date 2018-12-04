@@ -13,3 +13,6 @@ PROXY_POOL_URL = 'https://127.0.0.1:5555/random'
 # MySQL配置
 MYSQL_HOST = 'localhost'
 MYSQL_PORT = 3306
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = '970202'
+MYSQL_DATABASE = 'pc_weixin'
