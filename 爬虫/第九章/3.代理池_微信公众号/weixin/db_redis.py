@@ -30,3 +30,12 @@ class RedisQueue():
             return loads(self.db.lpop((REDIS_KEY)))
         else:
             return False
+
+    def clear(self):
+        '''
+        删除队列
+        :return:
+        '''
+        self.db.delete(REDIS_KEY)
+
+
