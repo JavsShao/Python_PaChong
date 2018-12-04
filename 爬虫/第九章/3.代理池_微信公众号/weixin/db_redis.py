@@ -38,4 +38,10 @@ class RedisQueue():
         '''
         self.db.delete(REDIS_KEY)
 
+    def empty(self):
+        '''
+        返回队列是否为空
+        :return:
+        '''
+        return self.db.llen(REDIS_KEY) == 0
 
