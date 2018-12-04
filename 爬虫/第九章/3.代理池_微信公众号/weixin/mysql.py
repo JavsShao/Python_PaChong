@@ -17,3 +17,20 @@ class MySQL():
             self.cursor = self.db.cursor()
         except pymysql.MySQLError as e:
             print(e.args)
+
+    def insert(self, table, data):
+        '''
+        插入数据
+        :param table:表名
+        :param data: 数据
+        :return:
+        '''
+        keys = ','.join(data.keys())
+        values = ', '.join(['%s'] * len(data))
+        sql_query = 'insert into %s (%s) values (%s)' % (table, keys, values)
+        try:
+            self.cursor.excute(sql_query, tuple(data.values()))
+            self.db.commit()
+        except pymysql.MySQLError as e:
+            print(e.args)
+            self.db.rollback()
