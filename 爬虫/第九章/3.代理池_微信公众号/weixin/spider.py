@@ -1,4 +1,8 @@
+import requests
 from requests import Session
+
+from weixin.config import *
+from weixin.mysql import MySQL
 from .db_redis import RedisQueue
 from .requests import WeixinRequest
 from urllib.parse import urlencode
@@ -20,3 +24,18 @@ class Spider(object):
     }
     session = Session()
     queue = RedisQueue()
+    mysql = MySQL()
+
+    def get_proxy(self):
+        '''
+        从代理池获取代理
+        :return:
+        '''
+        try:
+            response = requests.get(PROXY_POOL_URL)
+            if response.status_code == 200:
+                print('获取到代理：', response.text)
+                return response.text
+            return None
+        except requests.ConnectionError:
+            return None
