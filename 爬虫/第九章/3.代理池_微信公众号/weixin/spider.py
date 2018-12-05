@@ -4,7 +4,7 @@ from weixin.db_redis import RedisQueue
 from weixin.mysql import MySQL
 from urllib.parse import urlencode
 import requests
-from pyquery import PyQuery as pq
+from pyquery import PyQuery
 from requests import ReadTimeout, ConnectionError
 
 from weixin.requests import WeixinRequest
@@ -60,7 +60,7 @@ class Spider(object):
         :param response: 响应
         :return: 新的响应
         '''
-        doc = pq(response.text)
+        doc = PyQuery(response.text)
         items = doc('.news-box .news-list li .txt-box h3 a').items()
         for item in items():
             url = item.attr('href')
@@ -70,3 +70,18 @@ class Spider(object):
                 weixin_request = WeixinRequest(url=url, callback=self.parse_index, need_proxy=True)
                 yield weixin_request
 
+    def parse_detail(self, response):
+        '''
+        解析详情页
+        :param response: 响应
+        :return: 微信公众号文章
+        '''
+        doc = PyQuery(response.text)
+        data = {
+            'title':doc('.rich_media_title').text(),
+            'content':doc('.rich_media_content').text(),
+            'date':doc('#post-date').text(),
+            'nickname':doc('#js_profile_qrcode > div > strong').text(),
+            'wechat':doc('#js_profile_qrcode > div > p:nth-child(3) > span').text()
+        }
+        yield data
