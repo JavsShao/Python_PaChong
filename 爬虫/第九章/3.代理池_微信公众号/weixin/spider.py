@@ -105,3 +105,15 @@ class Spider(object):
         except (ConnectionError, ReadTimeout) as e:
             print(e.args)
             return False
+
+    def error(self, weixin_request):
+        '''
+        错误处理
+        :param weixin_request: 请求
+        :return:
+        '''
+        weixin_request.fail_time = weixin_request.fail_time + 1
+        print('请求失败，',weixin_request.fail_time, '次数：', weixin_request.url)
+        if weixin_request.fail_time < MAX_FAILED_TIME:
+            self.queue.add(weixin_request)
+
