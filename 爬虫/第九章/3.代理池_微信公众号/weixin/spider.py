@@ -141,3 +141,15 @@ class Spider(object):
             else:
                 self.error(weixin_request)
 
+    def run(self):
+        '''
+        入口
+        :return:
+        '''
+        self.start()
+        self.schedule()
+
+if __name__ == '__main__':
+    spider = Spider()
+    spider.run()
+
