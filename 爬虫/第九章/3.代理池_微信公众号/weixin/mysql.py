@@ -3,6 +3,7 @@ from weixin.config import *
 
 
 class MySQL():
+
     def __init__(self, host=MYSQL_HOST, username=MYSQL_USER, password=MYSQL_PASSWORD, port=MYSQL_PORT, database=MYSQL_DATABASE):
         '''
         MySQL数据库初始化
