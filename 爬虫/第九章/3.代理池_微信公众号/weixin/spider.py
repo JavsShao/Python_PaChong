@@ -52,3 +52,4 @@ class Spider(object):
         start_url = self.base_url + '?' + urlencode({'query':self.keyword, 'type':2})
         weixin_request = WeixinRequest(url=start_url, callback=self.parse_index, need_proxy=True)
         # 调度第一个请求
+        self.queue.add(weixin_request)
