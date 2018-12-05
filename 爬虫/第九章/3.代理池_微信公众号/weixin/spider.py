@@ -1,11 +1,13 @@
-import requests
 from requests import Session
-
 from weixin.config import *
+from weixin.db_redis import RedisQueue
 from weixin.mysql import MySQL
-from .db_redis import RedisQueue
-from .requests import WeixinRequest
 from urllib.parse import urlencode
+import requests
+from pyquery import PyQuery as pq
+from requests import ReadTimeout, ConnectionError
+
+from weixin.requests import WeixinRequest
 
 
 class Spider(object):
@@ -39,3 +41,14 @@ class Spider(object):
             return None
         except requests.ConnectionError:
             return None
+
+    def start(self):
+        '''
+        初始化工作
+        :return:
+        '''
+        # 全局更新Headers
+        self.session.headers.update(self.headers)
+        start_url = self.base_url + '?' + urlencode({'query':self.keyword, 'type':2})
+        weixin_request = WeixinRequest(url=start_url, callback=self.parse_index, need_proxy=True)
+        # 调度第一个请求
