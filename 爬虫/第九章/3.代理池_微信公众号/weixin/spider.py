@@ -117,3 +117,27 @@ class Spider(object):
         if weixin_request.fail_time < MAX_FAILED_TIME:
             self.queue.add(weixin_request)
 
+    def schedule(self):
+        """
+        调度请求
+        :return:
+        """
+        while not self.queue.empty():
+            weixin_request = self.queue.pop()
+            callback = weixin_request.callback
+            print('Schedule', weixin_request.url)
+            response = self.request(weixin_request)
+            if response and response.status_code in VALID_STATUSES:
+                results = list(callback(response))
+                if results:
+                    for result in results:
+                        print('New Result', type(result))
+                        if isinstance(result, WeixinRequest):
+                            self.queue.add(result)
+                        if isinstance(result, dict):
+                            self.mysql.insert('articles', result)
+                else:
+                    self.error(weixin_request)
+            else:
+                self.error(weixin_request)
+
