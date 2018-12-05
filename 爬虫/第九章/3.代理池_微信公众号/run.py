@@ -1,2 +1,6 @@
+from weixin.spider import Spider
+
+
 if __name__ == '__main__':
-    pass
+    spider = Spider()
+    spider.run()
