@@ -53,3 +53,20 @@ class Spider(object):
         weixin_request = WeixinRequest(url=start_url, callback=self.parse_index, need_proxy=True)
         # 调度第一个请求
         self.queue.add(weixin_request)
+
+    def parse_index(self, response):
+        '''
+        解析索引页
+        :param response: 响应
+        :return: 新的响应
+        '''
+        doc = pq(response.text)
+        items = doc('.news-box .news-list li .txt-box h3 a').items()
+        for item in items():
+            url = item.attr('href')
+            weixin_request = WeixinRequest(url=url, callback=self.parse_detail)
+            if next:
+                url = self.base_url + str(next)
+                weixin_request = WeixinRequest(url=url, callback=self.parse_index, need_proxy=True)
+                yield weixin_request
+
