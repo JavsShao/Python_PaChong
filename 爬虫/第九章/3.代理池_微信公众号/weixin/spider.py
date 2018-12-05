@@ -85,3 +85,23 @@ class Spider(object):
             'wechat':doc('#js_profile_qrcode > div > p:nth-child(3) > span').text()
         }
         yield data
+
+    def request(self, weixin_request):
+        '''
+        执行请求
+        :param weixin_request: 请求
+        :return: 响应
+        '''
+        try:
+            if weixin_request.need_proxy:
+                proxy = self.get_proxy()
+                if proxy:
+                    proxies = {
+                        'http':'http://' + proxy,
+                        'https':'https://' + proxy
+                    }
+                    return self.session.send(weixin_request.prepare(),timeout=weixin_request.timeout, allow_redirects=False, proxies=proxies)
+            return self.session.send(weixin_request.prepare(), timeout=weixin_request.timeout, allow_redirects=False)
+        except (ConnectionError, ReadTimeout) as e:
+            print(e.args)
+            return False
