@@ -127,17 +127,17 @@ class Spider(object):
         while not self.queue.empty():
             weixin_request = self.queue.pop()
             callback = weixin_request.callback
-            print('Schedule', weixin_request.url)
+            print('调度：', weixin_request.url)
             response = self.request(weixin_request)
             if response and response.status_code in VALID_STATUSES:
                 results = list(callback(response))
                 if results:
                     for result in results:
-                        print('New Result', type(result))
+                        print('新的请求：', type(result))
                         if isinstance(result, WeixinRequest):
                             self.queue.add(result)
                         if isinstance(result, dict):
-                            self.mysql.insert('articles', result)
+                            self.mysql.insert('文章：', result)
                 else:
                     self.error(weixin_request)
             else:
