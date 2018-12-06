@@ -65,10 +65,12 @@ class Spider(object):
         for item in items():
             url = item.attr('href')
             weixin_request = WeixinRequest(url=url, callback=self.parse_detail)
-            if next:
-                url = self.base_url + str(next)
-                weixin_request = WeixinRequest(url=url, callback=self.parse_index, need_proxy=True)
-                yield weixin_request
+            yield weixin_request
+        next = doc('#sogou_next').attr('href')
+        if next:
+            url = self.base_url + str(next)
+            weixin_request = WeixinRequest(url=url, callback=self.parse_index, need_proxy=True)
+            yield weixin_request
 
     def parse_detail(self, response):
         '''
