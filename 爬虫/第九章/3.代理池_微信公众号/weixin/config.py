@@ -15,7 +15,7 @@ MYSQL_HOST = 'localhost'
 MYSQL_PORT = 3306
 MYSQL_USER = 'root'
 MYSQL_PASSWORD = '970202'
-MYSQL_DATABASE = 'pc_weixin'
+MYSQL_DATABASE = 'pa_weixin'
 
 MAX_FAILED_TIME = 20
 
