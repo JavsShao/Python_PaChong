@@ -34,7 +34,7 @@ class MongoPipeline(object):
         )
 
     def open_spider(self, spider):
-        self.clint = pymongo.MongoClient(self.mongo_url)
+        self.client = pymongo.MongoClient(self.mongo_url)
         self.db = self.client[self.mongo_db]
 
     def process_item(self, item, spider):
