@@ -113,8 +113,21 @@ class RandomUserAgentMiddleware():
         ]
 
     def process_request(self, request, spider):
+        '''
+        设置User-Agent
+        :param request:
+        :param spider:
+        :return:
+        '''
         request.headers['User-Agent'] = random.choice(self.user_agents)
 
-    # def process_response(self, request, response, spider):
-    #     response.status = 201
-    #     return response
+    def process_response(self, request, response, spider):
+        '''
+        设置状态码
+        :param request:
+        :param response:
+        :param spider:
+        :return:
+        '''
+        response.status = 201
+        return response
