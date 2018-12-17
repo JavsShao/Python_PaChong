@@ -11,7 +11,7 @@ from scrapy.exceptions import DropItem
 
 class TextPipeline(object):
     def __init__(self):
-        set.limit = 50
+        self.limit = 50
 
     def process_item(self, item, spider):
         if item['text']:
