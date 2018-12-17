@@ -87,6 +87,7 @@ class ScrapydownloadertestDownloaderMiddleware(object):
         # - return a Response object
         # - return a Request object
         # - or raise IgnoreRequest
+        response.status = 201
         return response
 
     def process_exception(self, request, exception, spider):
